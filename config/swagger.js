@@ -9,8 +9,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:3000",
-      description: "Servidor local",
+      url: "https://api-veterinaria-cande.onrender.com",
+      description: "Servidor producción",
     },
   ],
 };
