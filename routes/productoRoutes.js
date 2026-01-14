@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const productoController = require('../controllers/productoController');
+const productoController = require("../controllers/productoController");
 
 /**
  * @swagger
@@ -10,8 +10,11 @@ const productoController = require('../controllers/productoController');
  *     description: Devuelve todos los productos cargados en la veterinaria
  *     tags:
  *       - Productos
+ *     responses:
+ *       200:
+ *         description: Lista de productos
  */
-router.get('/', productoController.obtenerProductos);
+router.get("/", productoController.obtenerProductos);
 
 /**
  * @swagger
@@ -26,8 +29,12 @@ router.get('/', productoController.obtenerProductos);
  *         required: true
  *         schema:
  *           type: string
+ *         description: Nombre del producto a buscar
+ *     responses:
+ *       200:
+ *         description: Productos encontrados
  */
-router.get('/buscar', productoController.buscarProductos);
+router.get("/buscar", productoController.buscarProductos);
 
 /**
  * @swagger
@@ -36,8 +43,18 @@ router.get('/buscar', productoController.buscarProductos);
  *     summary: Buscar productos por categoría
  *     tags:
  *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: nombre
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Categoría del producto
+ *     responses:
+ *       200:
+ *         description: Productos por categoría
  */
-router.get('/categoria/:nombre', productoController.obtenerPorCategoria);
+router.get("/categoria/:nombre", productoController.obtenerPorCategoria);
 
 /**
  * @swagger
@@ -46,8 +63,22 @@ router.get('/categoria/:nombre', productoController.obtenerPorCategoria);
  *     summary: Buscar productos por rango de precio
  *     tags:
  *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: min
+ *         required: true
+ *         schema:
+ *           type: number
+ *       - in: path
+ *         name: max
+ *         required: true
+ *         schema:
+ *           type: number
+ *     responses:
+ *       200:
+ *         description: Productos por rango de precio
  */
-router.get('/precio/:min-:max', productoController.obtenerPorPrecio);
+router.get("/precio/:min-:max", productoController.obtenerPorPrecio);
 
 /**
  * @swagger
@@ -56,8 +87,19 @@ router.get('/precio/:min-:max', productoController.obtenerPorPrecio);
  *     summary: Obtener un producto por código
  *     tags:
  *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: codigo
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Producto encontrado
+ *       404:
+ *         description: Producto no encontrado
  */
-router.get('/:codigo', productoController.obtenerProductoPorCodigo);
+router.get("/:codigo", productoController.obtenerProductoPorCodigo);
 
 /**
  * @swagger
@@ -66,8 +108,36 @@ router.get('/:codigo', productoController.obtenerProductoPorCodigo);
  *     summary: Crear un producto
  *     tags:
  *       - Productos
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - codigo
+ *               - nombre
+ *               - precio
+ *             properties:
+ *               codigo:
+ *                 type: string
+ *                 example: VET001
+ *               nombre:
+ *                 type: string
+ *                 example: Alimento balanceado para perros adultos
+ *               precio:
+ *                 type: number
+ *                 example: 12500
+ *               categoria:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["alimentos", "perros"]
+ *     responses:
+ *       201:
+ *         description: Producto creado correctamente
  */
-router.post('/', productoController.crearProducto);
+router.post("/", productoController.crearProducto);
 
 /**
  * @swagger
@@ -76,8 +146,30 @@ router.post('/', productoController.crearProducto);
  *     summary: Agregar varios productos juntos
  *     tags:
  *       - Productos
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 codigo:
+ *                   type: string
+ *                 nombre:
+ *                   type: string
+ *                 precio:
+ *                   type: number
+ *                 categoria:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *     responses:
+ *       201:
+ *         description: Productos agregados correctamente
  */
-router.post('/masivo', productoController.cargaMasiva);
+router.post("/masivo", productoController.cargaMasiva);
 
 /**
  * @swagger
@@ -86,8 +178,32 @@ router.post('/masivo', productoController.cargaMasiva);
  *     summary: Actualizar un producto
  *     tags:
  *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: codigo
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               precio:
+ *                 type: number
+ *               categoria:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Producto actualizado correctamente
  */
-router.put('/:codigo', productoController.actualizarProducto);
+router.put("/:codigo", productoController.actualizarProducto);
 
 /**
  * @swagger
@@ -96,7 +212,16 @@ router.put('/:codigo', productoController.actualizarProducto);
  *     summary: Eliminar un producto
  *     tags:
  *       - Productos
+ *     parameters:
+ *       - in: path
+ *         name: codigo
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Producto eliminado correctamente
  */
-router.delete('/:codigo', productoController.eliminarProducto);
+router.delete("/:codigo", productoController.eliminarProducto);
 
 module.exports = router;
