@@ -1,0 +1,14 @@
+[
+  {
+    "codigo": "VET001",
+    "nombre": "Alimento balanceado para perros",
+    "precio": 12500,
+    "categoria": ["alimentos", "perros"]
+  },
+  {
+    "codigo": "VET002",
+    "nombre": "Antiparasitario para gatos",
+    "precio": 8400,
+    "categoria": ["medicamentos", "gatos"]
+  }
+]

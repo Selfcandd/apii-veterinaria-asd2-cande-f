@@ -1,0 +1,38 @@
+/// Obtener todos loss productos
+GET http://localhost:3000/productos
+
+###
+
+
+/// crear un producto
+POST http://localhost:3000/productos
+Content-Type: application/json
+
+{
+  "codigo": "VET001",
+  "nombre": "Alimento balanceado para perros adultos",
+  "precio": 12500,
+  "categoria": ["alimentos", "perros"]
+}
+
+###
+
+
+/// obtener producto por código
+GET http://localhost:3000/productos/VET001
+
+###
+
+
+/// actualizar producto
+PUT http://localhost:3000/productos/VET001
+Content-Type: application/json
+
+{
+  "precio": 13500
+}
+
+###
+
+/// eliminar producto
+DELETE http://localhost:3000/productos/VET001
