@@ -1,4 +1,4 @@
-# api – Veterinaria 
+# API – Veterinaria 
 
 API REST desarrollada con Node.js y Express para productos de una veterinaria.  
 Permite administrar un catálogo de productos como alimentos, medicamentos y accesorios para tus mascotas.
@@ -13,6 +13,29 @@ Permite administrar un catálogo de productos como alimentos, medicamentos y acc
 - Mongoose  
 - Swagger (swagger-ui-express, swagger-jsdoc)  
 - dotenv  
+
+## Estructura del proyecto
+
+La estructura principal del proyecto es la siguiente:
+
+/controllers  
+- productoController.js  
+
+/models  
+- producto.js  
+
+/routes  
+- productoRoutes.js  
+
+/config  
+- database.js  
+
+/data  
+- archivos JSON con productos  
+
+/app.js  
+/README.md  
+
 
 ---
 
@@ -46,7 +69,25 @@ PORT=3000
 ```bash
 npm start
 ```
+## Variables de entorno
 
+El proyecto utiliza variables de entorno para manejar datos sensibles.  
+Estas variables deben definirse en un archivo `.env` que **no debe subirse al repositorio**.
+
+Variables necesarias:
+
+- `MONGO_URI`  
+  Cadena de conexión a la base de datos MongoDB (local o MongoDB Atlas).
+
+- `PORT`  
+  Puerto en el que se ejecuta el servidor Express.
+
+Ejemplo de archivo `.env`:
+
+```env
+MONGO_URI=mongodb+srv://usuario:password@cluster.mongodb.net/veterinaria
+PORT=3000
+```
 ---
 
 ## documentación de la API
@@ -55,7 +96,18 @@ La documentación de la api está disponible en Swagger una vez que el servidor 
 
 http://localhost:3000/api-docs
  
- ---
+## URL de producción
+
+La API se encuentra desplegada en Render y puede accederse desde:
+
+https://api-veterinaria-cande.onrender.com
+
+La documentación Swagger en producción está disponible en:
+
+https://api-veterinaria-cande.onrender.com/api-docs
+
+
+---
 
 ## Endpoints
 
