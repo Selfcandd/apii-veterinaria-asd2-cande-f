@@ -5,12 +5,12 @@ const swaggerDefinition = {
   info: {
     title: "API Veterinaria",
     version: "1.0.0",
-    description: "API asd veterinaria",
+    description: "API Veterinaria - CRUD de productos",
   },
   servers: [
     {
-      url: "https://api-veterinaria-cande.onrender.com",
-      description: "Servidor producción",
+      url: "https://apii-veterinaria-cande.onrender.com",
+      description: "Servidor producción (Render)",
     },
   ],
 };
